@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Elements Experiments</title>
+    <style>
+        body, header, main, footer, article, section, nav {
+            border: 1px solid #999; 
+            margin: 5px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HTML Elements Demo Page</h1>
+    <p><a href="/">back to home</a></p>
+
+    <section>
+        <h2>1. <code>&lt;audio&gt;</code> Element</h2>
+        <p>this element embeds sound. it uses a <code>&lt;source&gt;</code> tag to provide the audio file.</p>
+        <audio controls>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+            your browser does not support the audio element.
+        </audio>
+    </section>
+
+    <section>
+        <h2>2. <code>&lt;video&gt;</code> Element</h2>
+        <p>this element embeds a video. it uses multiple <code>&lt;source&gt;</code> tags to provide different formats (e.g., mp4 and ogg) as fallbacks.</p>
+        <video width="400" controls>
+            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
+            your browser does not support the video tag.
+        </video>
+    </section>
+
+    <section>
+        <h2>3. <code>&lt;picture&gt;</code> Element</h2>
+        <p>this element provides responsive images. it uses <code>&lt;source&gt;</code> tags to define different images for different screen sizes (or formats). resize your browser to see it (though these placeholders may look similar).</p>
+        <picture>
+            <source media="(min-width: 800px)" srcset="https://via.placeholder.com/800x200.png?text=Large+Image+(800px+)">
+            <source media="(min-width: 400px)" srcset="https://via.placeholder.com/400x100.png?text=Medium+Image+(400px+)">
+            <img src="https://via.placeholder.com/200x50.png?text=Small/Default+Image" alt="a placeholder image" style="width:auto;">
+        </picture>
+    </section>
+
+    <section>
+        <h2>4. <code>&lt;template&gt;</code> Element</h2>
+        <p>this element holds hidden content. the content below is cloned from the template using javascript and inserted here:</p>
+        
+        <div id="template-container"></div>
+
+        <template id="my-template">
+            <div style="background-color: #e6f7ff; border: 1px solid #b3e0ff; padding: 10px; border-radius: 5px;">
+                <p><strong>hello!</strong> this content was inside the <code>&lt;template&gt;</code> tag.</p>
+            </div>
+        </template>
+    </section>
+
+    <section>
+        <h2>5. <code>&lt;canvas&gt;</code> Element</h2>
+        <p>this element is a blank drawing surface. a simple red rectangle has been drawn on it using javascript.</p>
+        <canvas id="my-canvas" width="200" height="100">
+            your browser does not support the canvas tag.
+        </canvas>
+    </section>
+    
+    <section>
+        <h2>6. <code>&lt;source&gt;</code> Element</h2>
+        <p>this element has been used in sections 1, 2, and 3 (<code>&lt;audio&gt;</code>, <code>&lt;video&gt;</code>, and <code>&lt;picture&gt;</code>) to specify the media resources.</p>
+    </section>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const canvas = document.getElementById('my-canvas');
+            if (canvas.getContext) {
+                const ctx = canvas.getContext('2d');
+                
+                ctx.fillStyle = 'red';
+                ctx.fillRect(10, 10, 150, 80);
+            }
+
+            const template = document.getElementById('my-template');            
+            const templateContent = template.content.cloneNode(true);
+            document.getElementById('template-container').appendChild(templateContent);
+        });
+    </script>
+
+</body>
+</html>
