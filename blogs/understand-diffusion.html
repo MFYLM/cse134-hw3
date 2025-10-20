@@ -146,7 +146,10 @@
                     <p>
                         where <math><msub><mi>α</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn><mo>-</mo><msub><mi>β</mi><mi>t</mi></msub></math> and <math><msub><mover><mi>α</mi><mo stretchy="false">¯</mo></mover><mi>t</mi></msub><mo>=</mo><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>t</mi></munderover><msub><mi>α</mi><mi>i</mi></msub></math>. this allows us to efficiently train the model without having to iterate through the entire chain.
                     </p>
-                    
+                    <p>
+                        We can view diffusion model as a hierarchical variational autoencode where each node on Markov Chain is a latent variable corresponding to a noise level. Intuitively,
+                        since the model only predicts a slightly less noisy input, it becomes easier to fully reconstruct the original input after certain number of steps.  
+                    </p>
                     <h2 id="section-3">the reverse process: learning to denoise</h2>
                     <p>
                         the magic is in the "reverse process." here, we train a neural network to undo one step of the noising process. given a noisy image <math><msub><mi>x</mi><mi>t</mi></msub></math>, the network's job is to predict the slightly less noisy image <math><msub><mi>x</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub></math>, or more commonly, to predict the noise that was added.
@@ -176,13 +179,16 @@ def training_step(original_image, model):
     optimizer.step()</code></pre>
                     <h2 id="section-4">Efficient Training</h2>
                     <p>However, training model on a Markov Chain is not efficient. We have to go through all the time steps before performing one gradient update.
-                        To address this, we usually pick gaussian noise with a fixed variance and train the model to denoise the inputs since it has a closed-form solution 
-                        for different noise levels and allow constant sampling for different timesteps.
+                        To address this, we usually pick gaussian noise with a fixed variance and train the model to denoise the inputs since it has a closed-form 
+                        solution for different noise levels and allow constant sampling for different timesteps. 
                     </p>
 
                     <h2 id="section-5">conclusion</h2>
                     <p>
-                        by training a network to perform this simple denoising task at every possible noise level, the model implicitly learns the entire data distribution. to generate a new image, we simply start with random noise (<math><msub><mi>x</mi><mi>T</mi></msub></math>) and apply the learned denoising network iteratively for <math><mi>T</mi></math> steps until we arrive at a clean image (<math><msub><mi>x</mi><mn>0</mn></msub></math>). it's a powerful and scalable approach that forms the foundation of modern generative imaging.
+                        By training a network to perform this simple denoising task at every possible noise level, the model implicitly learns the entire data distribution. 
+                        To generate a new point point, we simply start with random noise (<math><msub><mi>x</mi><mi>T</mi></msub></math>) and apply the learned denoising network 
+                        iteratively for <math><mi>T</mi></math> steps until we arrive at a clean data point (<math><msub><mi>x</mi><mn>0</mn></msub></math>). 
+                        It's a powerful and scalable approach that forms the foundation of modern generative modeling.
                     </p>
                 </div>
             </article>
