@@ -1,0 +1,35 @@
+body main {
+    experience-card {
+        display: block;
+        font-family: -apple-system, system-ui, sans-serif;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 16px;
+        margin-bottom: 16px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        background-color: white;
+    }
+    
+    experience-card h3 {
+        margin-top: 0;
+        margin-bottom: 8px;
+        font-size: 1.1rem;
+        color: #333;
+    }
+    
+    experience-card p {
+        color: #555;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin: 0 0 8px 0;
+    }
+    
+    experience-card ul {
+        padding-left: 20px;
+        margin-top: 8px;
+        margin-bottom: 0;
+        color: #555;
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+}

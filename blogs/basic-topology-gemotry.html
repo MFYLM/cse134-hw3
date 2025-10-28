@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Diffusion Models - Feiyang Ma</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/blog-post.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#publications">Publications</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/blogs.html">Blogs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/experiments.html">Experiments</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <main class="main">
+        <div class="container post-layout">
+            <d-content>
+                <nav class="side-menu">
+                    <h3>in this article</h3>
+                    <ul>
+                        <li><a href="#section-1">the core idea</a></li>
+                        <li><a href="#section-2">the forward process</a></li>
+                        <li><a href="#section-3">the reverse process</a></li>
+                        <li><a href="#section-4">conclusion</a></li>
+                    </ul>
+                </nav>
+            </d-content>
+
+            <article class="post-content">
+                <header class="post-header">
+                    <h1>Basic Topology and Geometry for Differentiable Manifolds</h1>
+                    <p class="date">published on October 27, 2025</p>
+                    <p class="summary">
+                        Starting from most fundamental geometric objects, this blog will give an introduction and intuition of topology and geometry for differentiable manifolds.
+                    </p>
+                </header>
+
+                <div class="post-body">
+                    <h2>Moving from Euclidean Space to Non-Euclidean Space</h2>
+                    <p>
+                        Ecludiean space is very intuitive. Most of objects in the real world are in Euclidean measure which can be understood naturally. However, when we begin to talk about machine learning models that usually have millions
+                        or trillions of parameters, it becomes impossible to deciper them in traditional way. To study latent variables or lower dimesional spaces learned from high dimenisonal input data, we need to equip ourselves with more abstract
+                        tools to analyze them. In addition, this would help us understand what model actually learn from data and make it possible to add strong inductive biases from existing knowledge.
+                    </p>
+                    <h3>Metric Space</h3>
+                    <p>
+                        A metric space is a set equipped with a function that satisfies the following properties:
+                        <ul>
+                            <li>Non-negativity: <math><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>≥</mo><mn>0</mn></math> for all <math><mi>x</mi><mo>,</mo><mi>y</mi></math> in the set</li>
+                            <li>Identity of indiscernibles: <math><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mn>0</mn></math> if and only if <math><mi>x</mi><mo>=</mo><mi>y</mi></math></li>
+                            <li>Symmetry: <math><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>=</mo><mi>d</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">,</mo><mi>x</mi><mo stretchy="false">)</mo></math></li>
+                            <li>Triangle inequality: <math><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">,</mo><mi>z</mi><mo stretchy="false">)</mo><mo>≤</mo><mi>d</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">,</mo><mi>y</mi><mo stretchy="false">)</mo><mo>+</mo><mi>d</mi><mo stretchy="false">(</mo><mi>y</mi><mo stretchy="false">,</mo><mi>z</mi><mo stretchy="false">)</mo></math> for all <math><mi>x</mi><mo>,</mo><mi>y</mi><mo>,</mo><mi>z</mi></math> in the set</li>
+                        </ul>
+                    </p>
+                </div>
+            </article>
+        </div>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            &copy; Copyright 2025 Feiyang Ma (Last updated: 2025-10-16)
+        </div>
+    </footer>
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+:root {
+    /* light mode */
+    --primary-color: #007bff;
+    --secondary-color: #6c757d;
+    --background-color: white;
+    --text-color: #333;
+    --border-color: #dee2e6;
+    --box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+
+    /* dark mode */
+    --dark-primary-color: #007bff;
+    --dark-background-color: #121212;
+    --dark-text-color: white;
+    --dark-border-color: #212529;
+}
+
+
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    main {
+        flex: 1;
+        padding: 2rem;
+    }
+    
+    header {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        background-color: var(--background-color);
+        z-index: 1000;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    .navbar {
+        container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2%;
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 1rem 0;
+            align-items: center;
+        }
+
+        .navbar-nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2%;
+            width: 100%;
+            list-style-type: none;
+            margin: 0;
+            padding: 1rem 0;
+            align-items: center;
+        }
+
+        .nav-item a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .nav-item.active a {
+            color: var(--primary-color);
+            background-color: var(--background-color);
+        }
+    }
+
+    .footer {
+        width: 100%;
+        text-align: center;
+        padding: 1.5rem 0;
+        background-color: var(--background-color);
+        border-top: 1px solid var(--border-color);
+        color: var(--text-color);
+    }
+
+}

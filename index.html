@@ -7,28 +7,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
         <script src="/scripts/demo.js" defer></script>
         
-        <style>
-            body, header, main, footer, article, section, nav {
-                border: 1px solid #999; 
-                margin: 5px;
-                padding: 5px;
-            }
-            publication-card {
-                display: block;
-                background-color: #f9f9f9;
-                padding: 15px;
-                margin-bottom: 10px;
-                border: 1px solid #ddd;
-                border-radius: 4px;
-            }
-            publication-card h4 {
-                margin: 0 0 5px 0;
-            }
-            publication-card p {
-                margin: 0;
-                font-style: italic;
-            }
-        </style>
+        <link rel="stylesheet" href="/styles/main.css">
+        <link rel="stylesheet" href="/styles/experience-card.css">
+        <link rel="stylesheet" href="/styles/publication-card.css">
     </head>
 
     <body>
@@ -37,28 +18,26 @@
             <nav class="navbar">
                 <div class="container">
                     <h3>Feiyang Ma</h3>
-                    <div class="navbar-collapse collapse" id="navbarNav">
-                        <ul class="navbar-nav ml-auto flex-nowrap">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="/">About</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#publications">Publications</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="blogs.html">Blogs</a>
-                            </li>
-                            <li class="nav-item" >
-                                <a class="nav-link" href="experiments.html">Experiments</a>
-                            </li>
-                            <!-- <li class="toggle-container">
-                                <button class="light-toggle" title="Toggle light mode">
-                                    <i class="fas fa-moon"><svg></svg></i>
-                                    <i class="fas fa-sun"></i>
-                                </button>
-                            </li> -->
-                        </ul>
-                    </div>
+                    <ul class="navbar-nav ml-auto flex-nowrap">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#publications">Publications</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="blogs.html">Blogs</a>
+                        </li>
+                        <li class="nav-item" >
+                            <a class="nav-link" href="experiments.html">Experiments</a>
+                        </li>
+                        <li class="toggle-container">
+                            <button class="light-toggle" title="Toggle light mode">
+                                <i class="fas fa-moon"><svg></svg></i>
+                                <i class="fas fa-sun"></i>
+                            </button>
+                        </li>
+                    </ul>
                 </div>
             </nav>
             <progress id="scrollProgressBar" value="0" max="100"></progress>
@@ -103,11 +82,6 @@
                             part of the soccer world you should try to sign up for the tryout! This is the La Copa de la Vida! Let's see if Argentina wins the World Cup again!
                             <iframe width="1191" height="670" src="https://www.youtube.com/embed/MCWJNOfJoSM" title="Argentina v France: Full Penalty Shoot-out | 2022 #FIFAWorldCup Final" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </p>
-                        <math display="block">
-                            <mrow>
-                                <mi>E</mi><mo>=</mo><mi>m</mi><msup><mi>c</mi><mn>2</mn></msup> Einstein's Energy Equation:
-                            </mrow>
-                        </math>
                     </div>
                 </div>
                 <br>
@@ -145,7 +119,7 @@
                     <div class="experience-container">
                         <h1>Experience</h1>
 
-                        <experience-card title="Graduate Research Assistant - UCSD Vision Lab">
+                        <experience-card title="Graduate Research Assistant - UCSD Vision Lab" style="">
                             <p>Working on self-supervised learning for 3D vision tasks.</p>
                             <ul>
                                 <li>Developed novel architectures for processing point cloud data.</li>
@@ -160,31 +134,6 @@
 
                     </div>
                 </div>
-                <br>
-
-                <div class="media-demo container">
-                    <h2>Media Element Demos</h2>
-                    <p>demonstrations </p>
-        
-                    <h3>HTML5 Video</h3>
-                    <video controls width="400">
-                        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-                        <source src="https://www.w3schools.com/html/mov_bbb.ogg" type="video/ogg">
-                        video element
-                    </video>
-        
-                    <h3>HTML5 Audio</h3>
-                    <audio controls>
-                        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                        audio element
-                    </audio>
-        
-                    <h3>HTML5 Canvas</h3>
-                    <canvas id="demo-canvas" width="200" height="100" style="border: 1px solid black;">
-                        canvas element
-                    </canvas>
-                </div>
-
                 <br>
 
                 <div class="contact-container">
