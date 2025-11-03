@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
 :root {
     /* light mode */
     --primary-color: #007bff;
@@ -88,40 +90,13 @@ body {
                 }
             }
         }
-
-        progress#scrollProgressBar {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 0.25rem;
-            border: none;
-            background-color: transparent;
-            color: transparent; 
-        }
-        
-        progress#scrollProgressBar::-webkit-progress-bar {
-            background-color: transparent;
-        }
-        
-        progress#scrollProgressBar::-webkit-progress-value {
-            background-color: var(--color-text-link-dark); 
-        }
-        
-        progress#scrollProgressBar::-moz-progress-bar {
-            background-color: var(--color-text-link-dark);
-        }
     }
 }
 
 
 /* css variables for light/dark mode */
 :root {
-    --font-main: 'roboto', -apple-system, BlinkMacSystemFont, "segoe ui", Helvetica, Arial, sans-serif;
+    --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 
     --color-bg-light: #ffffff;
     --color-bg-alt-light: #f3f4f6;
