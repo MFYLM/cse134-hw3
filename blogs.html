@@ -4,49 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blogs - Feiyang Ma</title>
-    <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/blog-post.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/styles/blogs.css">
 </head>
 
 <body>
+    <input type="checkbox" hidden id="theme-toggle-checkbox">
     <header class="header">
         <nav class="navbar">
-            <div class="container">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#publications">Publications</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/blogs.html">Blogs</a>
-                    </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="/experiments.html">Experiments</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/">about</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/publications.html">publications</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="/blogs.html">blogs</a>
+                </li>
+                <!-- <li class="nav-item" >
+                    <a href="experiments.html">Experiments</a>
+                </li> -->
+                <li class="nav-item">
+                    <label for="theme-toggle-checkbox" id="theme-toggle-label" title="toggle dark mode">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </label>
+                </li>
+            </ul>
         </nav>
+        <!-- <progress id="scrollProgressBar" value="0" max="100"></progress> -->
     </header>
     
     <main class="main">
-        <div class="blog-container">
+        <blog-container>
             <h1>Knowledge Space</h1>
+
+            <blog-post-card>
+                <a href="/blogs/basic-topology-gemotry.html"><h2>Basic Topology and Geometry for Differentiable Manifolds</h2></a>
+                <p>Starting from most fundamental geometric objects, this blog will give an introduction and intuition of topology and geometry for differentiable manifolds.</p>
+                <post-date>
+                    <i class="fas fa-calendar-alt"></i>October 27, 2025
+                </post-date>
+            </blog-post-card>
             
             <blog-post-card>
-                <p><a href="/blogs/understand-diffusion.html">Understanding Diffusion Models</a><p>
+                <a href="/blogs/understand-diffusion.html"><h2>Understanding Diffusion Models</h2></a>
                 <p>A deep dive into how diffusion models work, from the basic principles to the latest advancements in text-to-image generation.</p>
-                <p>October 15, 2025</p>
+                <post-date>
+                    <i class="fas fa-calendar-alt"></i>October 15, 2025
+                </post-date>
             </blog-post-card>
-
-            <blog-post-card>
-                <p><a href="/blogs/basic-topology-gemotry.html">Basic Topology and Geometry for Differentiable Manifolds</a><p>
-                <p>Starting from most fundamental geometric objects, this blog will give an introduction and intuition of topology and geometry for differentiable manifolds.</p>
-                <p>October 27, 2025</p>
-            </blog-post-card>
-
-        </div>
+        </blog-container>
     </main>
     
     <footer class="footer">

@@ -4,154 +4,160 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Understanding Diffusion Models - Feiyang Ma</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="/styles/main.css">
-    <link rel="stylesheet" href="/styles/blog-post.css">
+    <link rel="stylesheet" href="/styles/single-blog.css">
 </head>
 
 <body>
+    <input type="checkbox" hidden id="theme-toggle-checkbox">
     <header class="header">
         <nav class="navbar">
-            <div class="container">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#publications">Publications</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/blogs.html">Blogs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/experiments.html">Experiments</a>
-                    </li>
-                </ul>
-            </div>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/">about</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/publications.html">publications</a>
+                </li>
+                <li class="nav-item active">
+                    <a href="/blogs.html">blogs</a>
+                </li>
+                <!-- <li class="nav-item" >
+                    <a href="experiments.html">Experiments</a>
+                </li> -->
+                <li class="nav-item">
+                    <label for="theme-toggle-checkbox" id="theme-toggle-label" title="toggle dark mode">
+                        <i class="fas fa-sun"></i>
+                        <i class="fas fa-moon"></i>
+                    </label>
+                </li>
+            </ul>
         </nav>
     </header>
     
     <main class="main">
-        <div class="container post-layout">
-            <aside class="side-menu">
+        <post-header>
+            <h1>Understanding Diffusion Models</h1>
+            <p class="date">published on October 15, 2025</p>
+            <p class="summary">
+                a deep dive into how diffusion models work, from the basic principles to the latest advancements in text-to-image generation.
+            </p>
+        </post-header>
+
+        <!-- <side-menu>
+            <nav class="side-menu">
                 <h3>in this article</h3>
                 <ul>
-                    <li><a href="#section-1">the core idea</a></li>
-                    <li><a href="#section-2">the forward process</a></li>
-                    <li><a href="#section-3">the reverse process</a></li>
-                    <li><a href="#section-4">conclusion</a></li>
+                    <li><a href="#section-1">the core idea: adding noise</a></li>
+                    <li><a href="#section-2">the forward process: a mathematical view</a></li>
+                    <li><a href="#section-3">the reverse process: learning to denoise</a></li>
+                    <li><a href="#section-4">Efficient Training</a></li>
+                    <li><a href="#section-5">conclusion</a></li>
                 </ul>
-            </aside>
+            </nav>
+        </side-menu> -->
+        <post-body>
+            <p>
+                diffusion models have recently taken the world of generative ai by storm. from dalle-2 to stable diffusion, these models produce stunningly realistic images from simple text prompts. but how do they work? the core idea is surprisingly elegant: start with noise, and slowly learn to reverse the noise to create an image.
+            </p>
 
-            <article class="post-content">
-                <header class="post-header">
-                    <h1>Understanding Diffusion Models</h1>
-                    <p class="date">published on October 15, 2025</p>
-                    <p class="summary">
-                        a deep dive into how diffusion models work, from the basic principles to the latest advancements in text-to-image generation.
-                    </p>
-                </header>
+            <h2 id="section-1">the core idea: adding noise</h2>
+            <p>
+                imagine you have a clear photograph. now, you add a tiny amount of gaussian noise to it. the image is now slightly distorted. what if you repeat this process hundreds, or even thousands, of times? eventually, your original photograph will be indistinguishable from pure, random noise. this is the "forward process," and it's a fixed, straightforward procedure.
+                For each time step, only image from the last time step is needed to generate the image at the current time step, which forms a Markov chain.
+            </p>
 
-                <div class="post-body">
-                    <p>
-                        diffusion models have recently taken the world of generative ai by storm. from dalle-2 to stable diffusion, these models produce stunningly realistic images from simple text prompts. but how do they work? the core idea is surprisingly elegant: start with noise, and slowly learn to reverse the noise to create an image.
-                    </p>
-
-                    <h2 id="section-1">the core idea: adding noise</h2>
-                    <p>
-                        imagine you have a clear photograph. now, you add a tiny amount of gaussian noise to it. the image is now slightly distorted. what if you repeat this process hundreds, or even thousands, of times? eventually, your original photograph will be indistinguishable from pure, random noise. this is the "forward process," and it's a fixed, straightforward procedure.
-                        For each time step, only image from the last time step is needed to generate the image at the current time step, which forms a Markov chain.
-                    </p>
-
-                    <h2 id="section-2">the forward process: a mathematical view</h2>
-                    <p>
-                        mathematically, the forward process is a markov chain that gradually adds noise to data. given a data point <math><msub><mi>x</mi><mn>0</mn></msub></math>, we can define the process as:
-                    </p>
-                    <math display="block">
-                      <mrow>
-                        <mi>q</mi>
-                        <mo>(</mo>
-                        <msub><mi>x</mi><mi>t</mi></msub>
-                        <mo>|</mo>
-                        <msub><mi>x</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub>
-                        <mo>)</mo>
-                        <mo>=</mo>
-                        <mi mathvariant="script">N</mi>
-                        <mo>(</mo>
-                        <msub><mi>x</mi><mi>t</mi></msub>
-                        <mo>;</mo>
-                        <msqrt>
-                          <mrow>
-                            <mn>1</mn>
-                            <mo>-</mo>
-                            <msub><mi>β</mi><mi>t</mi></msub>
-                          </mrow>
-                        </msqrt>
-                        <msub><mi>x</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub>
-                        <mo>,</mo>
-                        <msub><mi>β</mi><mi>t</mi></msub>
-                        <mi>I</mi>
-                        <mo>)</mo>
-                      </mrow>
-                    </math>
-                    <p>
-                        where <math><msub><mi>β</mi><mi>t</mi></msub></math> is a small positive constant defining the variance schedule. a key property of this process is that we can sample <math><msub><mi>x</mi><mi>t</mi></msub></math> at any arbitrary timestep <math><mi>t</mi></math> directly from <math><msub><mi>x</mi><mn>0</mn></msub></math>:
-                    </p>
-                    <math display="block">
-                      <mrow>
-                        <mi>q</mi>
-                        <mo>(</mo>
-                        <msub><mi>x</mi><mi>t</mi></msub>
-                        <mo>|</mo>
-                        <msub><mi>x</mi><mn>0</mn></msub>
-                        <mo>)</mo>
-                        <mo>=</mo>
-                        <mi mathvariant="script">N</mi>
-                        <mo>(</mo>
-                        <msub><mi>x</mi><mi>t</mi></msub>
-                        <mo>;</mo>
-                        <msqrt>
-                          <msub>
-                            <mover>
-                              <mi>α</mi>
-                              <mo stretchy="false">¯</mo>
-                            </mover>
-                            <mi>t</mi>
-                          </msub>
-                        </msqrt>
-                        <msub><mi>x</mi><mn>0</mn></msub>
-                        <mo>,</mo>
-                        <mo>(</mo>
-                        <mrow>
-                          <mn>1</mn>
-                          <mo>-</mo>
-                          <msub>
-                            <mover>
-                              <mi>α</mi>
-                              <mo stretchy="false">¯</mo>
-                            </mover>
-                            <mi>t</mi>
-                          </msub>
-                        </mrow>
-                        <mo>)</mo>
-                        <mi>I</mi>
-                        <mo>)</mo>
-                      </mrow>
-                    </math>
-                    <p>
-                        where <math><msub><mi>α</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn><mo>-</mo><msub><mi>β</mi><mi>t</mi></msub></math> and <math><msub><mover><mi>α</mi><mo stretchy="false">¯</mo></mover><mi>t</mi></msub><mo>=</mo><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>t</mi></munderover><msub><mi>α</mi><mi>i</mi></msub></math>. this allows us to efficiently train the model without having to iterate through the entire chain.
-                    </p>
-                    <p>
-                        We can view diffusion model as a hierarchical variational autoencode where each node on Markov Chain is a latent variable corresponding to a noise level. Intuitively,
-                        since the model only predicts a slightly less noisy input, it becomes easier to fully reconstruct the original input after certain number of steps.  
-                    </p>
-                    <h2 id="section-3">the reverse process: learning to denoise</h2>
-                    <p>
-                        the magic is in the "reverse process." here, we train a neural network to undo one step of the noising process. given a noisy image <math><msub><mi>x</mi><mi>t</mi></msub></math>, the network's job is to predict the slightly less noisy image <math><msub><mi>x</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub></math>, or more commonly, to predict the noise that was added.
-                    </p>
-                    <p>
-                        this is where deep learning comes in. we use a network, typically a u-net architecture, to learn this denoising step. the network takes the noisy image <math><msub><mi>x</mi><mi>t</mi></msub></math> and the timestep <math><mi>t</mi></math> as input and outputs the predicted noise.
-                    </p>
-                    <pre><code># simplified pseudocode for a training step
+            <h2 id="section-2">the forward process: a mathematical view</h2>
+            <p>
+                mathematically, the forward process is a markov chain that gradually adds noise to data. given a data point <math><msub><mi>x</mi><mn>0</mn></msub></math>, we can define the process as:
+            </p>
+            <math display="block">
+                <mrow>
+                <mi>q</mi>
+                <mo>(</mo>
+                <msub><mi>x</mi><mi>t</mi></msub>
+                <mo>|</mo>
+                <msub><mi>x</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub>
+                <mo>)</mo>
+                <mo>=</mo>
+                <mi mathvariant="script">N</mi>
+                <mo>(</mo>
+                <msub><mi>x</mi><mi>t</mi></msub>
+                <mo>;</mo>
+                <msqrt>
+                    <mrow>
+                    <mn>1</mn>
+                    <mo>-</mo>
+                    <msub><mi>β</mi><mi>t</mi></msub>
+                    </mrow>
+                </msqrt>
+                <msub><mi>x</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub>
+                <mo>,</mo>
+                <msub><mi>β</mi><mi>t</mi></msub>
+                <mi>I</mi>
+                <mo>)</mo>
+                </mrow>
+            </math>
+            <p>
+                where <math><msub><mi>β</mi><mi>t</mi></msub></math> is a small positive constant defining the variance schedule. a key property of this process is that we can sample <math><msub><mi>x</mi><mi>t</mi></msub></math> at any arbitrary timestep <math><mi>t</mi></math> directly from <math><msub><mi>x</mi><mn>0</mn></msub></math>:
+            </p>
+            <math display="block">
+                <mrow>
+                <mi>q</mi>
+                <mo>(</mo>
+                <msub><mi>x</mi><mi>t</mi></msub>
+                <mo>|</mo>
+                <msub><mi>x</mi><mn>0</mn></msub>
+                <mo>)</mo>
+                <mo>=</mo>
+                <mi mathvariant="script">N</mi>
+                <mo>(</mo>
+                <msub><mi>x</mi><mi>t</mi></msub>
+                <mo>;</mo>
+                <msqrt>
+                    <msub>
+                    <mover>
+                        <mi>α</mi>
+                        <mo stretchy="false">¯</mo>
+                    </mover>
+                    <mi>t</mi>
+                    </msub>
+                </msqrt>
+                <msub><mi>x</mi><mn>0</mn></msub>
+                <mo>,</mo>
+                <mo>(</mo>
+                <mrow>
+                    <mn>1</mn>
+                    <mo>-</mo>
+                    <msub>
+                    <mover>
+                        <mi>α</mi>
+                        <mo stretchy="false">¯</mo>
+                    </mover>
+                    <mi>t</mi>
+                    </msub>
+                </mrow>
+                <mo>)</mo>
+                <mi>I</mi>
+                <mo>)</mo>
+                </mrow>
+            </math>
+            <p>
+                where <math><msub><mi>α</mi><mi>t</mi></msub><mo>=</mo><mn>1</mn><mo>-</mo><msub><mi>β</mi><mi>t</mi></msub></math> and <math><msub><mover><mi>α</mi><mo stretchy="false">¯</mo></mover><mi>t</mi></msub><mo>=</mo><munderover><mo>∏</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>t</mi></munderover><msub><mi>α</mi><mi>i</mi></msub></math>. this allows us to efficiently train the model without having to iterate through the entire chain.
+            </p>
+            <p>
+                We can view diffusion model as a hierarchical variational autoencode where each node on Markov Chain is a latent variable corresponding to a noise level. Intuitively,
+                since the model only predicts a slightly less noisy input, it becomes easier to fully reconstruct the original input after certain number of steps.  
+            </p>
+            <h2 id="section-3">the reverse process: learning to denoise</h2>
+            <p>
+                the magic is in the "reverse process." here, we train a neural network to undo one step of the noising process. given a noisy image <math><msub><mi>x</mi><mi>t</mi></msub></math>, the network's job is to predict the slightly less noisy image <math><msub><mi>x</mi><mrow><mi>t</mi><mo>-</mo><mn>1</mn></mrow></msub></math>, or more commonly, to predict the noise that was added.
+            </p>
+            <p>
+                this is where deep learning comes in. we use a network, typically a u-net architecture, to learn this denoising step. the network takes the noisy image <math><msub><mi>x</mi><mi>t</mi></msub></math> and the timestep <math><mi>t</mi></math> as input and outputs the predicted noise.
+            </p>
+            <pre><code># simplified pseudocode for a training step
 def training_step(original_image, model):
     # 1. pick a random timestep
     t = random_integer(1, T)
@@ -171,22 +177,20 @@ def training_step(original_image, model):
     # 6. update model weights
     loss.backward()
     optimizer.step()</code></pre>
-                    <h2 id="section-4">Efficient Training</h2>
-                    <p>However, training model on a Markov Chain is not efficient. We have to go through all the time steps before performing one gradient update.
-                        To address this, we usually pick gaussian noise with a fixed variance and train the model to denoise the inputs since it has a closed-form 
-                        solution for different noise levels and allow constant sampling for different timesteps. 
-                    </p>
+            <h2 id="section-4">Efficient Training</h2>
+            <p>However, training model on a Markov Chain is not efficient. We have to go through all the time steps before performing one gradient update.
+                To address this, we usually pick gaussian noise with a fixed variance and train the model to denoise the inputs since it has a closed-form 
+                solution for different noise levels and allow constant sampling for different timesteps. 
+            </p>
 
-                    <h2 id="section-5">conclusion</h2>
-                    <p>
-                        By training a network to perform this simple denoising task at every possible noise level, the model implicitly learns the entire data distribution. 
-                        To generate a new point point, we simply start with random noise (<math><msub><mi>x</mi><mi>T</mi></msub></math>) and apply the learned denoising network 
-                        iteratively for <math><mi>T</mi></math> steps until we arrive at a clean data point (<math><msub><mi>x</mi><mn>0</mn></msub></math>). 
-                        It's a powerful and scalable approach that forms the foundation of modern generative modeling.
-                    </p>
-                </div>
-            </article>
-        </div>
+            <h2 id="section-5">conclusion</h2>
+            <p>
+                By training a network to perform this simple denoising task at every possible noise level, the model implicitly learns the entire data distribution. 
+                To generate a new point point, we simply start with random noise (<math><msub><mi>x</mi><mi>T</mi></msub></math>) and apply the learned denoising network 
+                iteratively for <math><mi>T</mi></math> steps until we arrive at a clean data point (<math><msub><mi>x</mi><mn>0</mn></msub></math>). 
+                It's a powerful and scalable approach that forms the foundation of modern generative modeling.
+            </p>
+        </post-body>
     </main>
     
     <footer class="footer">

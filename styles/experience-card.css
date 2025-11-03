@@ -1,35 +1,36 @@
+@import url('/styles/main.css');
+
 body main {
     experience-card {
         display: block;
         font-family: -apple-system, system-ui, sans-serif;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        padding: 16px;
-        margin-bottom: 16px;
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        background-color: white;
+        border: 2px solid var(--color-border-light);
+        border-radius: 0.5rem;
+        padding: 2rem;
+        box-shadow: var(--color-card-shadow-light);
+        background-color: var(--color-card-bg-light);
+    }
+
+    experience-card:hover {
+        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        transform: scale(1.025);
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
     }
     
-    experience-card h3 {
+    experience-card h2 {
         margin-top: 0;
-        margin-bottom: 8px;
         font-size: 1.1rem;
-        color: #333;
+        color: var(--active-color);
     }
     
     experience-card p {
-        color: #555;
+        color: var(--color-text-secondary-light);
         font-size: 0.95rem;
         line-height: 1.5;
-        margin: 0 0 8px 0;
     }
     
     experience-card ul {
-        padding-left: 20px;
-        margin-top: 8px;
-        margin-bottom: 0;
-        color: #555;
-        font-size: 0.95rem;
-        line-height: 1.5;
+        padding-left: 1rem;
     }
 }

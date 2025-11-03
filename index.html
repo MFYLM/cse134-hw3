@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Feiyang Ma</title>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
         <script src="/scripts/demo.js" defer></script>
         
         <link rel="stylesheet" href="/styles/main.css">
@@ -13,148 +13,155 @@
     </head>
 
     <body>
-        <noscript></noscript>
+        <input type="checkbox" hidden id="theme-toggle-checkbox">
+        <!-- <input type="checkbox" hidden id="hamburger-toggle"> -->
+
         <header class="header">
+            <!-- <label for="hamburger-toggle" class="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label> -->
+    
             <nav class="navbar">
-                <div class="container">
-                    <h3>Feiyang Ma</h3>
-                    <ul class="navbar-nav ml-auto flex-nowrap">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#publications">Publications</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="blogs.html">Blogs</a>
-                        </li>
-                        <li class="nav-item" >
-                            <a class="nav-link" href="experiments.html">Experiments</a>
-                        </li>
-                        <li class="toggle-container">
-                            <button class="light-toggle" title="Toggle light mode">
-                                <i class="fas fa-moon"><svg></svg></i>
-                                <i class="fas fa-sun"></i>
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a href="/">about</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/publications.html">publications</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/blogs.html">blogs</a>
+                    </li>
+                    <!-- <li class="nav-item" >
+                        <a href="experiments.html">Experiments</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <label for="theme-toggle-checkbox" id="theme-toggle-label" title="toggle dark mode">
+                            <i class="fas fa-sun"></i>
+                            <i class="fas fa-moon"></i>
+                        </label>
+                    </li>
+                </ul>
             </nav>
-            <progress id="scrollProgressBar" value="0" max="100"></progress>
         </header>
         
         <main class="main">
-            <article class="container personal-info">
-                <div class="personal-info-container">
-                    <div class="image-container">
+            <div class="personal-info-container">
+                <image-contact-icon>
+                    <figure>
                         <picture>
-                            <source srcset="assets/feiyang_ma.webp" type="image/webp">
-                            
-                            <img src="assets/feiyang_ma.jpg" alt="a photo of feiyang ma">
+                            <source 
+                                media="(max-width: 768px)" 
+                                srcset="assets/images/NVC-Feiyang.webp"
+                                type="image/webp">
+                        
+                            <img 
+                                src="assets/images/NVC-Feiyang.jpg" 
+                                alt="Portrait photo of Feiyang Ma"
+                                width="200"
+                                height="300"
+                                loading="lazy">
                         </picture>
-                    </div>
-                    <div class="content-container">
+                    </figure>
+                    <contact-icons>
                         <h2>Feiyang Ma</h2>
-                        <p>
-                            I am a Master student in the Department of Computer Science and Engineering at the <a href="https://www.ucsd.edu"><em>University of California, 
-                            San Diego</em></a>. I finished my undergraduate study at <a href="https://www.uci.edu"><em>University of California, Irvine</em></a> majoring 
-                            in Computer Science with a specialization in intelligence systems. My research interests are in the field of <strong>computer vision</strong> 
-                            and <strong>machine learning</strong>. My goal is to build spatial intelligence systems that can operate in the real world and generalize to 
-                            unseen scenarios. My research interests include:
-                            <ol>
-                                <li><strong>Self-supervised learning</strong> in 3D vision</li>
-                                <li><strong>Geometric deep learning</strong> for building strong priors</li>
-                            </ol>
-                        </p>
-                        <div class="contact-icon-container">
-                            <div class="contact-info-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>feiyang.ma@ucsd.edu</span>
-                            </div>
-                            <div class="contact-info-item">
-                                <i class="fas fa-phone"></i>
-                                <span>(626) 233-2531</span>
-                            </div>
-                        </div>
-                        <p>
-                            I'm currently learning about <strong>group theory</strong> especially <b>Lie Group in SE(3)</b>. In my spare time, I enjoy reading books, going to
-                            the gym, playing video games and soccer. In fact, I might join the volunteering group of FIFA World Cup in Los Angeles in June 2026! If you are 
-                            part of the soccer world you should try to sign up for the tryout! This is the La Copa de la Vida! Let's see if Argentina wins the World Cup again!
-                            <iframe width="1191" height="670" src="https://www.youtube.com/embed/MCWJNOfJoSM" title="Argentina v France: Full Penalty Shoot-out | 2022 #FIFAWorldCup Final" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </p>
-                    </div>
+                        <h3>Machine Learning Researcher, Efficient Accelerationist</h3>
+                        <ul class="contact-icons-list">
+                            <li>
+                                <a href="mailto:feiyangma@ucsd.edu"><i class="fas fa-envelope"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://scholar.google.com/citations?user=1234567890"><i class="fas fa-graduation-cap"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/MFYLM"><i class="fab fa-github"></i></a>
+                            </li>
+                            <li>
+                                <i class="fab fa-linkedin"></i>
+                            </li>
+                            <li>
+                                <i class="fab fa-twitter"></i>
+                            </li>
+                            <li>
+                                <i class="fab fa-instagram"></i>
+                            </li>
+                        </ul>
+                    </contact-icons>
+                </image-contact-icon>
+                <div class="content-container">
+                    <p>
+                        I am a Master student in the Department of Computer Science and Engineering at the <a href="https://www.ucsd.edu">University of California, 
+                        San Diego</a>. I finished my undergraduate study at <a href="https://www.uci.edu">University of California, Irvine</a> majoring 
+                        in Computer Science with a specialization in intelligence systems. My research interests are in the field of <strong>computer vision</strong> 
+                        and <strong>machine learning</strong>. My goal is to build spatial intelligence systems that can operate in the real world and generalize to 
+                        unseen scenarios. My research interests include:
+                        <ol>
+                            <li><strong>Self-supervised learning</strong> in 3D vision</li>
+                            <li><strong>Geometric deep learning</strong> for building strong priors</li>
+                        </ol>
+                    </p>
+                    <p>
+                        I'm currently learning about <strong>group representation theory</strong> including <b>SE(3) equivalence</b> and how it could benefit learning. 
+                        In my spare time, I enjoy reading books, going to gym, playing video games and soccer. In fact, I might join the volunteering group of FIFA World Cup in Los Angeles in June 2026! If you are 
+                        part of the soccer world you should try to sign up for the tryout! This is the La Copa de la Vida! Let's see if Argentina wins the World Cup again!
+                    </p>
                 </div>
-                <br>
-                <div class="publications" id="publications">
-                    <div class="publications-container">
-                        <h1>Publications</h1>
-                        
-                        <publication-card>
-                            <h4><a href="https://arxiv.org/abs/paper-link">Self-Supervised Learning with 2D-3D Correspondences in Autonomous Driving</a></h4>
-                            <p>Authors: Feiyang Ma, Co-author One, Co-author Two</p>
-                            <p>Conference on Computer Vision and Pattern Recognition (CVPR), 2026</p>
-                        </publication-card>
-        
-                        <publication-card>
-                            <h4><a href="#">Geometric Priors in Action Learning for Robot Manipulation</a></h4>
-                            <p>Authors: Feiyang Ma, Another Author</p>
-                            <p>International Conference on Machine Learning (ICML), 2026</p>
-                        </publication-card>
+            </div>
+            <br>
+            <publications>
+                <h1>Selected Publications (<a href="/publications.html">full list</a>)</h1>
+                
+                <publication-card>
+                    <h4><a href="https://arxiv.org/abs/paper-link">Self-Supervised Learning with 2D-3D Correspondences in Autonomous Driving</a></h4>
+                    <p>Authors: Feiyang Ma, Co-author One, Co-author Two</p>
+                    <p>Conference on Computer Vision and Pattern Recognition (CVPR), 2026</p>
+                </publication-card>
 
-                        <template id="new-publication-template">
-                            <publication-card>
-                                <h4>A Third, Template-Loaded Publication</h4>
-                                <p>Authors: Feiyang Ma, Example Author</p>
-                                <p>Conference on Principle of Rules in Universe, 2026</p>
-                            </publication-card>
-                        </template>
-                    
-                        <button id="load-more-pubs" type="button" style="margin-top: 15px;">
-                            load more
-                        </button>
-                    </div>
-                </div>
-                <br>
-                <div class="experiences">
-                    <div class="experience-container">
-                        <h1>Experience</h1>
+                <publication-card>
+                    <h4><a href="#">Geometric Priors in Action Learning for Robot Manipulation</a></h4>
+                    <p>Authors: Feiyang Ma, Another Author</p>
+                    <p>International Conference on Machine Learning (ICML), 2026</p>
+                </publication-card>
+            </publications>
+            <br>
+            <div class="experiences">
+                <h1>Experience</h1>
 
-                        <experience-card title="Graduate Research Assistant - UCSD Vision Lab" style="">
-                            <p>Working on self-supervised learning for 3D vision tasks.</p>
-                            <ul>
-                                <li>Developed novel architectures for processing point cloud data.</li>
-                                <li>Researched applications of geometric deep learning and Lie groups.</li>
-                                <li>Prepared manuscripts for publication in top-tier conferences.</li>
-                            </ul>
-                        </experience-card>
-                        
-                        <experience-card title="Machine Learning Intern - Tech Company Inc.">
-                            <p>Implemented and tested production models for 3D reconstruction.</p>
-                        </experience-card>
+                <experience-card title="Graduate Research Assistant - UCSD Vision Lab">
+                    <p>Working on self-supervised learning for 3D vision tasks.</p>
+                    <ul>
+                        <li>Developed novel architectures for processing point cloud data.</li>
+                        <li>Researched applications of geometric deep learning and Lie groups.</li>
+                        <li>Prepared manuscripts for publication in top-tier conferences.</li>
+                    </ul>
+                </experience-card>
+                
+                <experience-card title="Machine Learning Intern - Tech Company Inc.">
+                    <p>Implemented and tested production models for 3D reconstruction.</p>
+                </existing-card>
+            </div>
+            <br>
 
-                    </div>
-                </div>
-                <br>
-
-                <div class="contact-container">
-                    <p>If you have any questions, please feel free to contact me<button onclick="document.getElementById('contactDialog').showModal()">here</button>.</p>
-                    <dialog id="contactDialog">
-                        <form class="contact-form" action="https://formspree.io/f/xayvopwr" method="POST" >
-                            <fieldset>
-                                <legend>Contact Me</legend>
-                                <label for="email">
-                                    Email: <input id="email" type="email" name="email" placeholder="Your email" required>
-                                </label>
-                                <label for="message">
-                                    Message: <textarea id="message" name="message" placeholder="Your message" rows="4" required></textarea>
-                                </label>
-                                <button type="submit">Send</button>
-                            </fieldset>
-                        </form>
-                    </dialog>
-                </div>
-            </article>
-            <hello-world></hello-world>
+            <contact-container>
+                <p>If you have any questions, please feel free to contact me via email at <a href="mailto:feiyangma@ucsd.edu">feiyangma@ucsd.edu</a>.</p>
+                <!-- <p>If you have any questions, please feel free to contact <button onclick="document.getElementById('contactDialog').showModal()">me</button>.</p>
+                <dialog id="contact-dialog">
+                    <form class="contact-form" action="https://formspree.io/f/xayvopwr" method="POST" >
+                        <fieldset>
+                            <legend>Contact Me</legend>
+                            <label for="email">
+                                Email: <input id="email" type="email" name="email" placeholder="Your email" required>
+                            </label>
+                            <label for="message">
+                                Message: <textarea id="message" name="message" placeholder="Your message" rows="4" required></textarea>
+                            </label>
+                            <button type="submit">Send</button>
+                        </fieldset>
+                    </form>
+                </dialog> -->
+            </contact-container>
         </main>
         
         <footer class="footer">
@@ -163,4 +170,7 @@
             </div>
         </footer>
     </body>
+
+    <noscript>You need to enable JavaScript to view this website!</noscript>
 </html>
+
