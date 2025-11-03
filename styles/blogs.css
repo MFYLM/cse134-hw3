@@ -23,17 +23,27 @@ body main blog-container {
         box-shadow: var(--color-card-shadow);
         background-color: var(--background-color);
 
+        transition: all 0.3s ease;
+
         a {
             position: relative; 
             display: inline-block; 
             text-decoration: none;
             color: var(--active-color);
+            
+            @supports (color: color(display-p3 1 1 1)) {
+                color: var(--active-color-p3);
+            }
 
             h2 {
                 margin-top: 0;
                 margin-bottom: 8px;
                 font-size: 1.4rem;
                 color: var(--active-color);
+                
+                @supports (color: color(display-p3 1 1 1)) {
+                    color: var(--active-color-p3);
+                }
             }
 
             h2::after {
@@ -73,9 +83,17 @@ body main blog-container {
     }
     
     blog-post-card:hover {
+        border-color: var(--border-interactive, var(--active-color));
+        background-color: var(--card-hover-bg, var(--background-color));
         box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-        transform: translateY(-4px);
+        transform: scale(1.025);
+
         transition: box-shadow 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+
+        @supports (color: color(display-p3 1 1 1)) {
+            border-color: var(--active-color-p3);
+        }
     }
 
     h2 a::after, blog-post-card h3 a::after {

@@ -145,6 +145,15 @@ body {
     --color-card-shadow-dark: 0 0.25rem 0.4rem -0.06rem rgba(0, 0, 0, 0.4), 0 0.125rem 0.25rem -0.06rem rgba(0, 0, 0, 0.3);
     --color-icon-hover-bg-dark: #374151;
     --color-icon-hover-text-dark: #ffffff;
+
+
+    --active-color-p3: color(display-p3 0 0.48 1); /* More vibrant blue than #007bff */
+    --accent-hover-p3: color(display-p3 0.2 0.6 1); /* Vibrant light blue for hovers */
+    
+    --active-color-muted: color-mix(in srgb, var(--active-color) 60%, var(--color-text-secondary-light));
+    --card-hover-bg: color-mix(in srgb, var(--color-card-bg-light) 95%, var(--active-color) 5%);
+    
+    --border-interactive: color-mix(in oklch, var(--color-border-light) 70%, var(--active-color) 30%);
 }
 
 body {
@@ -297,12 +306,29 @@ publication-card,
 experience-card {
     display: block;
     background-color: var(--color-card-bg-light);
-    border: 1px solid var(--color-border-light);
+    border: 2px solid var(--color-border-light);
     color: var(--color-text-secondary-light);
     box-shadow: var(--color-card-shadow-light);
     padding: 1.5rem;
     border-radius: 0.5rem;
     margin-bottom: 1rem;
+
+    &:hover {
+        border-color: var(--border-interactive, var(--active-color));
+        background-color: var(--card-hover-bg, var(--color-card-bg-light));
+        
+        @supports (color: color(display-p3 1 1 1)) {
+            border-color: var(--active-color-p3);
+        }
+    }
+    
+    a {
+        color: var(--active-color);
+        
+        @supports (color: color(display-p3 1 1 1)) {
+            color: var(--active-color-p3);
+        }
+    }
 }
 
 iframe {
